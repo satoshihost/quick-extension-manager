@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="header">
+        <h3>Quick Extension Manager</h3>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search extensions...">
+    </div>
+
+    <div id="bulkControls" class="bulk-controls">
+        <div class="extension-item aggregate loading">Preparing batch controls...</div>
+    </div>
+    
+    <div id="extensionsList" class="extensions-list">
+        <div class="loading">Loading extensions...</div>
+    </div>
+    
+    <div class="footer">
+        <div class="stats">
+            <span id="extensionCount">0 extensions</span>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+body {
+    width: 350px;
+    max-height: 500px;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    background: #f8f9fa;
+    overflow-x: hidden;
+}
+
+.header {
+    background: #4285f4;
+    color: white;
+    padding: 12px 16px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.search-container {
+    padding: 12px 16px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.bulk-controls {
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.bulk-controls .extension-item {
+    border-bottom: none;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-container input:focus {
+    border-color: #4285f4;
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+}
+
+.extensions-list {
+    max-height: 350px;
+    overflow-y: auto;
+    background: white;
+}
+
+.extension-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.extension-item:hover {
+    background: #f5f5f5;
+}
+
+.extension-item.disabled {
+    opacity: 0.6;
+}
+
+.extension-item.aggregate {
+    cursor: default;
+    border-left: 3px solid #dfe5fb;
+    background: #f8faff;
+}
+
+.extension-item.aggregate.processing {
+    opacity: 0.5;
+}
+
+.aggregate-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+    border-radius: 50%;
+    background: #e3e9ff;
+    color: #3758f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.aggregate-button {
+    background: #4285f4;
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.aggregate-button.secondary {
+    background: #34a853;
+}
+
+.aggregate-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.aggregate-button:hover:not(:disabled) {
+    background: #3367d6;
+}
+
+.aggregate-button.secondary:hover:not(:disabled) {
+    background: #2a8c44;
+}
+
+.extension-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    flex-shrink: 0;
+}
+
+.extension-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.extension-name {
+    font-weight: 500;
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.extension-description {
+    font-size: 11px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.extension-toggle {
+    margin-left: 12px;
+    flex-shrink: 0;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4285f4;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 13px;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 13px;
+}
+
+.footer {
+    background: #f8f9fa;
+    padding: 8px 16px;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.stats {
+    font-size: 11px;
+    color: #666;
+}
+
+.extension-item.self {
+    background: #fff3cd;
+    border-left: 3px solid #ffc107;
+}
+
+.extension-item.self .extension-name:after {
+    content: " (This extension)";
+    font-size: 10px;
+    color: #856404;
+    font-weight: normal;
+}

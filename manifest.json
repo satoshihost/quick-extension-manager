@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Quick Extension Manager",
+  "version": "1.0",
+  "description": "Quickly enable/disable individual browser extensions from a popup",
+  "permissions": [
+    "management"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Quick Extension Manager"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
