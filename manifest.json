@@ -4,7 +4,8 @@
   "version": "1.0",
   "description": "Quickly enable/disable individual browser extensions from a popup",
   "permissions": [
-    "management"
+    "management",
+    "storage"
   ],
   "action": {
     "default_popup": "popup.html",

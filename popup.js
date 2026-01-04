@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const bulkControls = document.getElementById('bulkControls');
     const extensionCount = document.getElementById('extensionCount');
     const currentExtensionId = chrome.runtime.id;
+    const BATCH_STORAGE_KEY = 'lastSuspendedBatch';
     
     let allExtensions = [];
     let filteredExtensions = [];
@@ -11,7 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let bulkProcessing = false;
     
     // Load extensions when popup opens
-    loadExtensions();
+    chrome.storage.local.get(BATCH_STORAGE_KEY, data => {
+        const savedBatch = data[BATCH_STORAGE_KEY];
+        if (Array.isArray(savedBatch)) {
+            lastSuspendedBatch = savedBatch;
+        }
+        loadExtensions();
+    });
     
     // Search functionality
     searchInput.addEventListener('input', function() {
@@ -36,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 filteredExtensions = [...allExtensions];
+                syncBatchStateWithCurrentExtensions();
                 renderExtensions();
                 updateStats();
                 renderBulkControls();
@@ -121,6 +129,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const extension = allExtensions.find(ext => ext.id === extensionId);
                 if (extension) {
                     extension.enabled = enable;
+                }
+                
+                if (enable) {
+                    removeFromBatch(extensionId);
                 }
                 
                 // Re-render to show updated state
@@ -217,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const successes = results.filter(result => result.success).map(result => result.id);
         const failures = results.filter(result => !result.success);
         
-        lastSuspendedBatch = successes;
+        persistBatchState(successes);
         bulkProcessing = false;
         
         if (successes.length) {
@@ -242,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const successes = results.filter(result => result.success).map(result => result.id);
         const failures = results.filter(result => !result.success).map(result => result.id);
         
-        lastSuspendedBatch = failures;
+        persistBatchState(failures);
         bulkProcessing = false;
         
         if (successes.length) {
@@ -276,6 +288,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         }));
+    }
+
+    function persistBatchState(ids) {
+        lastSuspendedBatch = ids;
+        if (ids.length) {
+            chrome.storage.local.set({ [BATCH_STORAGE_KEY]: ids });
+        } else {
+            chrome.storage.local.remove(BATCH_STORAGE_KEY);
+        }
+    }
+
+    function syncBatchStateWithCurrentExtensions() {
+        if (!lastSuspendedBatch.length || !allExtensions.length) {
+            return;
+        }
+        const stillDisabled = lastSuspendedBatch.filter(id => {
+            const ext = allExtensions.find(ext => ext.id === id);
+            return ext && !ext.enabled;
+        });
+        if (stillDisabled.length !== lastSuspendedBatch.length) {
+            persistBatchState(stillDisabled);
+        }
+    }
+
+    function removeFromBatch(extensionId) {
+        if (!lastSuspendedBatch.length) return;
+        if (!lastSuspendedBatch.includes(extensionId)) return;
+        persistBatchState(lastSuspendedBatch.filter(id => id !== extensionId));
     }
     
     function getExtensionIcon(extension) {
