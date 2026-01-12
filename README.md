@@ -1,14 +1,18 @@
 # Quick Extension Manager
 
-A Chrome/Brave extension that provides quick access to enable/disable individual browser extensions from a convenient popup interface.
+A Chrome/Brave extension that provides quick access to enable/disable individual browser extensions from a convenient popup interface. The goal is to stay lightweight, transparent, and distraction-free.
+
+One click opens the popup, another toggles any extension. You can also pause the entire currently-active set and bring those same extensions back later—ideal when you need a temporary clean slate without losing your usual setup.
 
 ## Features
 
-- **Individual Extension Control**: Enable/disable any extension with one click
-- **Search Functionality**: Quickly find extensions by name or description
-- **Clean Interface**: Modern, easy-to-use popup design
-- **Extension Status**: Shows enabled/disabled count and visual indicators
-- **Safe Operation**: Prevents accidentally disabling itself
+- **Individual Extension Control**: Enable/disable any extension with one click.
+- **Active Group Switch**: Pause every currently enabled extension (except protected ones) and restore the same set later. The paused group persists between popup openings.
+- **Search Functionality**: Quickly find extensions by name or description.
+- **Clean Interface**: Modern, easy-to-use popup design optimized for speed.
+- **Extension Status**: Shows enabled/disabled count and visual indicators.
+- **Sorted List Display**: Enabled extensions appear first (alphabetically), followed by disabled ones.
+- **Safe Operation**: Prevents accidentally disabling itself or other non-toggleable entries.
 
 ## Installation
 
@@ -22,11 +26,12 @@ A Chrome/Brave extension that provides quick access to enable/disable individual
 
 ## Usage
 
-1. **Click the extension icon** in your browser toolbar
-2. **Browse your extensions** - they're sorted with enabled ones first
-3. **Use the search box** to quickly find specific extensions
-4. **Toggle extensions** using the switches on the right
-5. **View stats** at the bottom showing how many extensions are enabled
+1. **Click the extension icon** in your browser toolbar.
+2. **Browse your extensions** — enabled ones are listed first.
+3. **Use the search box** to quickly find specific extensions.
+4. **Toggle extensions** using the switches on the right.
+5. **Pause/Resume active group** via the “Active Group Switch” card above the list.
+6. **View stats** at the bottom showing how many extensions are enabled.
 
 ## Features Explained
 
@@ -43,15 +48,20 @@ Type in the search box to filter extensions by name or description.
 - **Faded appearance** = Extension is disabled
 - **Yellow highlight** = This extension (cannot be disabled)
 
+### Active Group Switch
+- “Pause active set” disables every currently enabled extension that Chrome allows us to toggle (this extension stays on).
+- “Re-enable batch” restores only the extensions you paused previously, even if you closed the popup or restarted the browser.
+- The paused list is stored locally using Chrome’s storage API; toggling any extension manually removes it from the batch automatically.
+
 ### Stats
-The bottom shows "X/Y extensions enabled" where X is enabled count and Y is total count.
+The bottom shows “X/Y extensions enabled” where X is enabled count and Y is total count. This updates immediately when the group switch or individual toggles change.
 
 ## Permissions
 
-This extension requires the `management` permission to:
-- List all installed extensions
-- Enable/disable extensions
-- Read extension metadata (name, description, icons)
+This extension requires:
+
+- `management`: list installed extensions, read metadata, enable/disable them.
+- `storage`: remember which extensions were paused by the Active Group Switch so they can be restored later.
 
 ## Compatibility
 
