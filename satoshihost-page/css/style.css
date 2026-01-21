@@ -8,40 +8,6 @@
     --shadow: 0 1px 6px rgba(32, 33, 36, 0.1);
     --shadow-hover: 0 4px 12px rgba(32, 33, 36, 0.15);
     --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --bg-main: #ffffff;
-    --bg-secondary: #f8f9fa;
-    --text-main: #202124;
-    --text-muted: #5f6368;
-}
-
-body.dark-theme {
-    --bg-main: #0a0a0c;
-    /* Deep black-blue background */
-    --bg-secondary: #1a1a1d;
-    /* Slightly lighter for cards/sections */
-    --text-main: #ffffff;
-    /* Pure white for primary text */
-    --text-muted: #abb1bf;
-    /* Light gray for secondary text */
-    --border-color: #2c2e33;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.7);
-    --dark-color: #ffffff;
-    --light-color: #0a0a0c;
-}
-
-@media (prefers-color-scheme: dark) {
-    body:not(.light-theme) {
-        --bg-main: #0a0a0c;
-        --bg-secondary: #1a1a1d;
-        --text-main: #ffffff;
-        --text-muted: #abb1bf;
-        --border-color: #2c2e33;
-        --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.7);
-        --dark-color: #ffffff;
-        --light-color: #0a0a0c;
-    }
 }
 
 * {
@@ -52,101 +18,10 @@ body.dark-theme {
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    color: var(--text-main);
-    background-color: var(--bg-main);
+    color: var(--dark-color);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color 0.3s, color 0.3s;
 }
-
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-}
-
-.theme-toggle .sun-icon {
-    display: none;
-}
-
-.theme-toggle .moon-icon {
-    display: block;
-}
-
-body.dark-theme .theme-toggle .sun-icon {
-    display: block;
-}
-
-body.dark-theme .theme-toggle .moon-icon {
-    display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-    body:not(.light-theme) .theme-toggle .sun-icon {
-        display: block;
-    }
-
-    body:not(.light-theme) .theme-toggle .moon-icon {
-        display: none;
-    }
-}
-
-/* Specific overrides for sections */
-.features,
-.how-it-works,
-.screenshots,
-.video-demo,
-.compatibility,
-.permissions,
-.cta-section,
-.footer {
-    background-color: var(--bg-main);
-}
-
-.feature-card,
-.work-item,
-.screenshot-item img,
-.compatibility-item,
-.permissions-box {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-}
-
-.feature-card h3,
-.work-content h3,
-.compatibility-item h3,
-.permission-content h3,
-.section-title {
-    color: var(--text-main);
-}
-
-.section-subtitle,
-.work-content p,
-.work-content ul,
-.feature-card p,
-.compatibility-item p,
-.permission-content p {
-    color: var(--text-muted);
-}
-
 
 .container {
     max-width: 1200px;
