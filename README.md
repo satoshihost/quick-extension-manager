@@ -7,6 +7,7 @@ One click opens the popup, another toggles any extension. You can also pause the
 ## Features
 
 - **Individual Extension Control**: Enable/disable any extension with one click.
+- **Dark Mode Support**: Automatically follows your browser/system theme.
 - **Active Group Switch**: Pause every currently enabled extension (except protected ones) and restore the same set later. The paused group persists between popup openings.
 - **Search Functionality**: Quickly find extensions by name or description.
 - **Clean Interface**: Modern, easy-to-use popup design optimized for speed.
@@ -53,6 +54,9 @@ Type in the search box to filter extensions by name or description.
 - “Re-enable batch” restores only the extensions you paused previously, even if you closed the popup or restarted the browser.
 - The paused list is stored locally using Chrome’s storage API; toggling any extension manually removes it from the batch automatically.
 
+### Dark Mode
+The extension supports automatic dark mode. It detects your browser or system-level appearance preferences and adapts its theme instantly.
+
 ### Stats
 The bottom shows “X/Y extensions enabled” where X is enabled count and Y is total count. This updates immediately when the group switch or individual toggles change.
 
@@ -73,6 +77,7 @@ Works with:
 ## Troubleshooting
 
 - **Extension not appearing**: Check that you loaded the unpacked extension correctly
+- **Dark mode not working**: Ensure your browser or system has dark mode enabled. Some browsers require a restart to pick up system-level changes.
 - **Cannot toggle extension**: Some system extensions cannot be disabled
 - **Missing icons**: Extensions may not provide icons; a default placeholder is shown
 - **Permission errors**: Make sure the extension has the management permission
