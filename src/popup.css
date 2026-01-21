@@ -21,7 +21,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    body:not(.light-theme) {
+    :root {
         --bg-primary: #121212;
         --bg-secondary: #1e1e1e;
         --text-primary: #e0e0e0;
@@ -44,27 +44,7 @@
     }
 }
 
-body.dark-theme {
-    --bg-primary: #121212;
-    --bg-secondary: #1e1e1e;
-    --text-primary: #e0e0e0;
-    --text-secondary: #aaaaaa;
-    --text-muted: #777777;
-    --border-color: #333333;
-    --border-light: #2c2c2c;
-    --header-bg: #1a73e8;
-    --header-text: #ffffff;
-    --item-hover: #2c2c2c;
-    --slider-bg: #444444;
-    --accent-bg: #1a233a;
-    --accent-border: #2d3e63;
-    --accent-icon-bg: #1e2a4a;
-    --accent-icon-color: #7690ff;
-    --self-bg: #332b00;
-    --self-border: #e3a600;
-    --self-text: #ffecb3;
-    --input-border: #444444;
-}
+
 
 body {
     width: 350px;
@@ -82,57 +62,8 @@ body {
     background: var(--header-bg);
     color: var(--header-text);
     padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.theme-toggle {
-    position: absolute;
-    left: 12px;
-    background: transparent;
-    border: none;
-    color: var(--header-text);
-    padding: 4px;
-    cursor: pointer;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s, opacity 0.2s;
-    opacity: 0.8;
-}
-
-.theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
-    opacity: 1;
-}
-
-.theme-toggle svg {
-    display: none;
-}
-
-/* Show sun icon when in dark mode (suggesting to switch to light) */
-body.dark-theme .sun-icon {
-    display: block;
-}
-
-/* Show moon icon in light mode */
-body:not(.dark-theme) .moon-icon {
-    display: block;
-}
-
-/* Media query support: if no explicit theme set, use media icons */
-@media (prefers-color-scheme: dark) {
-    body:not(.light-theme):not(.dark-theme) .sun-icon {
-        display: block;
-    }
-
-    body:not(.light-theme):not(.dark-theme) .moon-icon {
-        display: none;
-    }
 }
 
 .header h3 {
