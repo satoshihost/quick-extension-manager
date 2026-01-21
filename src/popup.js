@@ -5,20 +5,56 @@ document.addEventListener('DOMContentLoaded', function () {
     const extensionCount = document.getElementById('extensionCount');
     const currentExtensionId = chrome.runtime.id;
     const BATCH_STORAGE_KEY = 'lastSuspendedBatch';
+    const THEME_STORAGE_KEY = 'themePreference';
 
     let allExtensions = [];
     let filteredExtensions = [];
     let lastSuspendedBatch = [];
     let bulkProcessing = false;
 
-    // Load extensions when popup opens
-    chrome.storage.local.get(BATCH_STORAGE_KEY, data => {
+    // Load theme and extensions
+    chrome.storage.local.get([BATCH_STORAGE_KEY, THEME_STORAGE_KEY], data => {
         const savedBatch = data[BATCH_STORAGE_KEY];
         if (Array.isArray(savedBatch)) {
             lastSuspendedBatch = savedBatch;
         }
+
+        const savedTheme = data[THEME_STORAGE_KEY] || 'auto';
+        applyTheme(savedTheme);
+
         loadExtensions();
     });
+
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            chrome.storage.local.get(THEME_STORAGE_KEY, data => {
+                const currentTheme = data[THEME_STORAGE_KEY] || 'auto';
+                let nextTheme;
+
+                // Cycle: auto -> dark -> light -> auto
+                if (currentTheme === 'auto') nextTheme = 'dark';
+                else if (currentTheme === 'dark') nextTheme = 'light';
+                else nextTheme = 'auto';
+
+                chrome.storage.local.set({ [THEME_STORAGE_KEY]: nextTheme }, () => {
+                    applyTheme(nextTheme);
+                    showTooltip(`Theme set to ${nextTheme}`);
+                });
+            });
+        });
+    }
+
+    function applyTheme(theme) {
+        document.body.classList.remove('light-theme', 'dark-theme');
+        if (theme === 'dark') {
+            document.body.classList.add('dark-theme');
+        } else if (theme === 'light') {
+            document.body.classList.add('light-theme');
+        }
+        // if 'auto', no class is added, CSS media query handles it
+    }
 
     // Search functionality
     searchInput.addEventListener('input', function () {
