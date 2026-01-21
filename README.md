@@ -22,7 +22,7 @@ One click opens the popup, another toggles any extension. You can also pause the
    - Brave: `brave://extensions/`
    - Chrome: `chrome://extensions/`
 3. **Enable Developer Mode** (toggle in top right)
-4. **Click "Load unpacked"** and select the `extension-manager` folder
+4. **Click "Load unpacked"** and select the `src/` folder inside the `extension-manager` project
 5. **Pin the extension** to your toolbar for easy access
 
 ## Usage
@@ -84,11 +84,11 @@ Works with:
 
 ## Development
 
-The extension consists of:
-- `manifest.json` - Extension configuration and permissions
-- `popup.html` - Main interface structure
-- `popup.css` - Styling and layout
-- `popup.js` - Functionality and Chrome API interactions
-- Icon files - Extension branding
+The extension code is located in the `src/` directory:
+- `src/manifest.json` - Extension configuration and permissions
+- `src/popup.html` - Main interface structure
+- `src/popup.css` - Styling and layout
+- `src/popup.js` - Functionality and Chrome API interactions
+- `src/icons/` - Extension branding icons
 
 Feel free to modify the code to suit your needs!
